@@ -1,13 +1,18 @@
 <h2>Top Hits</h2>
 
 <ul class="songs">
-    <li *ngFor="let song of songs">
+    <li *ngFor="let song of songs" 
+        [class.selected]="song === selectedSong"
+        (click)="onSelect(song)">
         <span class="badge"> {{song.id}}.</span> {{song.title}}, {{song.singer}}
     </li>
 </ul>
 
-<!-- <div>
-    <label for="title">Title: </label>
-    <input id="title" [(ngModel)]="song.title" placeholder="title">
+<div *ngIf="selectedSong">
+    <h2>{{selectedSong.title | uppercase}} is my favorite song from musician {{selectedSong.singer}}</h2>
+    <div>
+        <label for="title">Song: </label>
+        <input id="title" [(ngModel)]="selectedSong.title" placeholder="title">
+    </div>
+    <div><label>Singer: </label>{{selectedSong.singer}}</div>
 </div>
-<div><label>Singer: </label>{{song.singer}}</div> -->
