@@ -8,11 +8,6 @@
     </li>
 </ul>
 
-<div *ngIf="selectedSong">
-    <h2>{{selectedSong.title | uppercase}} is my favorite song from musician {{selectedSong.singer}}</h2>
-    <div>
-        <label for="title">Song: </label>
-        <input id="title" [(ngModel)]="selectedSong.title" placeholder="title">
-    </div>
-    <div><label>Singer: </label>{{selectedSong.singer}}</div>
-</div>
+<app-song-info [song]="selectedSong"></app-song-info>
+
+
