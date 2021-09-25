@@ -1,0 +1,55 @@
+.songs {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+}
+
+.songs li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: rgb(212, 169, 169);
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+}
+
+.songs li:hover {
+    color: #2c3a41;
+    background-color: #e0dcdc;
+    left: .1em;
+  }
+
+.songs li.selected {
+background-color: black;
+color: white;
+}
+.songs li.selected:hover {
+background-color: #505050;
+color: white;
+}
+.songs li.selected:active {
+background-color: black;
+color: white;
+}
+.songs .badge {
+display: inline-block;
+font-size: small;
+color: white;
+padding: 0.8em 0.7em 0 0.7em;
+background-color:#72aceb;
+line-height: 1em;
+position: relative;
+left: -1px;
+top: -4px;
+height: 1.8em;
+margin-right: .8em;
+border-radius: 4px 0 0 4px;
+}
+
+input {
+padding: .5rem;
+}
+  

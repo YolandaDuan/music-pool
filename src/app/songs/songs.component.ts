@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from '../song';
+import { SONGS } from '../mock-songs';
 
 @Component({
   selector: 'app-songs',
@@ -8,12 +9,7 @@ import { Song } from '../song';
 })
 export class SongsComponent implements OnInit {
 
-  song: Song = {
-    id: 1,
-    title: 'Hello',
-    singer: 'Adele' 
-  }
-  
+  songs = SONGS;
   
   constructor() { }
 
