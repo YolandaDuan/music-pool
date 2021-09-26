@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Song } from '../song';
 import { SongService } from '../song.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-songs',
@@ -13,14 +15,16 @@ export class SongsComponent implements OnInit {
 
   selectedSong?: Song;
 
-  onSelect(song: Song): void {
-    this.selectedSong = song;
-  }
-  
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService, private messageService: MessagesService) { }
 
   ngOnInit() {
     this.getSongs();
+  }
+
+
+  onSelect(song: Song): void {
+    this.selectedSong = song;
+    this.messageService.add(`SongsComponent: ${song.title} is my favorite song`);
   }
 
   getSongs(): void {
