@@ -2,12 +2,11 @@
 
 <ul class="songs">
     <li *ngFor="let song of songs" >
-        <a routerLink="/infor//{{song.id}}">
+        <a routerLink="/info/{{song.id}}">
             <span class="badge"> {{song.id}}.</span> {{song.title}}, {{song.singer}}
         </a>       
     </li>
 </ul>
 
-<!-- <app-song-info [song]="selectedSong"></app-song-info> -->
 
 
