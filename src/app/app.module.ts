@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { SongsComponent } from './songs/songs.component';
 import { SongInfoComponent } from './song-info/song-info.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SongsComponent,
     SongInfoComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

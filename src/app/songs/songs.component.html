@@ -1,13 +1,13 @@
 <h2>Top Hits</h2>
 
 <ul class="songs">
-    <li *ngFor="let song of songs" 
-        [class.selected]="song === selectedSong"
-        (click)="onSelect(song)">
-        <span class="badge"> {{song.id}}.</span> {{song.title}}, {{song.singer}}
+    <li *ngFor="let song of songs" >
+        <a routerLink="/infor//{{song.id}}">
+            <span class="badge"> {{song.id}}.</span> {{song.title}}, {{song.singer}}
+        </a>       
     </li>
 </ul>
 
-<app-song-info [song]="selectedSong"></app-song-info>
+<!-- <app-song-info [song]="selectedSong"></app-song-info> -->
 
 
