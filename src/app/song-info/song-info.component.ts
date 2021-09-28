@@ -32,4 +32,11 @@ export class SongInfoComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+    if (this.song) {
+      this.songService.updateSong(this.song)
+        .subscribe(() => this.goBack)
+    }
+  }
 }
