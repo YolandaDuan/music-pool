@@ -88,4 +88,16 @@ export class SongService {
       catchError(this.handleError<Song>(`deletedSong`))
     );
   }
+
+  searchSongs(title: string): Observable<Song[]> {
+    if (!title.trim()) {
+      return of([]);
+    }
+    return this.http.get<Song[]>(`${this.songsUrl}/?title=${title}`).pipe(
+      tap(x => x.length ?
+        this.log(`found songs matching "${title}"`) :
+        this.log(`no songs matching "${title}"`)),
+      catchError(this.handleError<Song[]>('searchSongs', []))
+    );
+  }
 }

@@ -12,6 +12,7 @@ import { SongsComponent } from './songs/songs.component';
 import { SongInfoComponent } from './song-info/song-info.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SongSearchComponent } from './song-search/song-search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SongsComponent,
     SongInfoComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    SongSearchComponent
   ],
   imports: [
     BrowserModule,
