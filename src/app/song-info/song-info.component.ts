@@ -26,7 +26,7 @@ export class SongInfoComponent implements OnInit {
   getSong(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.songService.getSong(id)
-      .subscribe(song => this.song = song)
+      .subscribe(song => this.song = song);
   }
 
   goBack(): void {

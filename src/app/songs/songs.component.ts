@@ -23,4 +23,17 @@ export class SongsComponent implements OnInit {
         .subscribe(songs => this.songs = songs);
   }
 
+  add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
+    this.songService.addSong({ title } as Song)
+      .subscribe(song => {
+        this.songs.push(song);
+      });
+  }
+
+  delete(song: Song): void {
+    this.songs = this.songs.filter(h => h !== song);
+    this.songService.deleteSong(song.id).subscribe();
+  }
 }

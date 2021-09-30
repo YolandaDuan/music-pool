@@ -13,6 +13,12 @@ import { MessagesService } from './messages.service';
 })
 export class SongService {
 
+  private songsUrl = 'api/songs'; 
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(
     private http: HttpClient,
     private messageService: MessagesService) { }
@@ -20,12 +26,6 @@ export class SongService {
   private log(message: string) {
     this.messageService.add(`SongService: ${message}`);
   }
-
-  private songsUrl = 'api/songs';  
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -41,15 +41,27 @@ export class SongService {
   getSongs(): Observable<Song[]> { 
     return this.http.get<Song[]>(this.songsUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(_ => this.log('fetched songs successfully')),
         catchError(this.handleError<Song[]>('getSongs', []))
       );
   }
 
   getSong(id: number): Observable<Song> {
-    const url = `${this.songsUrl}/{id}`;
+    const url = `${this.songsUrl}/${id}`;
     return this.http.get<Song>(url).pipe(
       tap(_ => this.log(`fetched song with id = ${id}`)),
+      catchError(this.handleError<Song>(`getSong id=${id}`))
+    );
+  }
+
+  getSongNo404<Data>(id: number): Observable<Song> {
+    const url = `${this.songsUrl}/?id={id}`;
+    return this.http.get<Song[]>(url).pipe(
+      map(songs => songs[0]),
+      tap(h => {
+        const outcome = h ? `fetched`: `did not find`;
+        this.log(`${outcome} song with id=${id}`);
+      }),
       catchError(this.handleError<Song>(`getSong id=${id}`))
     );
   }
@@ -58,6 +70,22 @@ export class SongService {
     return this.http.put(this.songsUrl, song, this.httpOptions).pipe(
       tap(_ => this.log(`updated song id = ${song.id}`)),
       catchError(this.handleError<any>('updateSong'))
+    );
+  }
+
+  addSong(song: Song): Observable<Song> {
+    return this.http.post<Song>(this.songsUrl, song, this.httpOptions).pipe(
+      tap((newSong: Song) => this.log(`added song with id = ${newSong.id}`)),
+      catchError(this.handleError<Song>('addSong'))
+    );
+  }
+
+  deleteSong(id: number): Observable<Song> {
+    const url = `${this.songsUrl}/${id}`;
+
+    return this.http.delete<Song>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted song id=${id}`)),
+      catchError(this.handleError<Song>(`deletedSong`))
     );
   }
 }
